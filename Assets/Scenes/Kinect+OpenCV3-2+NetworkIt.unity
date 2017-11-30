@@ -475,6 +475,7 @@ GameObject:
   - component: {fileID: 1117421005}
   - component: {fileID: 1117421007}
   - component: {fileID: 1117421008}
+  - component: {fileID: 1117421009}
   m_Layer: 0
   m_Name: Person 1 Left Arm
   m_TagString: Untagged
@@ -496,8 +497,10 @@ MonoBehaviour:
   angleTolerance: 10
   src: {fileID: 0}
   drum2: {fileID: 8300000, guid: ddc3c3f3ea69fef42bafbc72ba298457, type: 3}
+  targetBodyID: 0
   targetBodyIndex: 0
   audioReverb: {fileID: 0}
+  lowPass: {fileID: 0}
 --- !u!4 &1117421006
 Transform:
   m_ObjectHideFlags: 0
@@ -614,6 +617,27 @@ AudioReverbZone:
   m_Density: 100
   m_LFReference: 250
   m_RoomLF: 0
+--- !u!169 &1117421009
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1117421004}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0.22727273
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &1135097202
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,8 +743,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1222499709}
-  - component: {fileID: 1222499708}
   - component: {fileID: 1222499707}
+  - component: {fileID: 1222499708}
+  - component: {fileID: 1222499710}
+  - component: {fileID: 1222499711}
   m_Layer: 0
   m_Name: Person 2 Right Arm
   m_TagString: Untagged
@@ -816,15 +842,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1222499706}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c6349785d55e524fb0801cdec66ff81, type: 3}
+  m_Script: {fileID: 11500000, guid: cc9fc51df54df724089e8c5a2c88d091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   angleTolerance: 10
   src: {fileID: 0}
   drum1: {fileID: 8300000, guid: 4055c3ffafa91c24d9c978ca4eb699ee, type: 3}
   drum2: {fileID: 8300000, guid: ddc3c3f3ea69fef42bafbc72ba298457, type: 3}
+  targetBodyID: 0
   targetBodyIndex: 1
   audioReverb: {fileID: 0}
+  lowPass: {fileID: 0}
 --- !u!4 &1222499709
 Transform:
   m_ObjectHideFlags: 0
@@ -838,6 +866,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!167 &1222499710
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1222499706}
+  m_Enabled: 1
+  m_MinDistance: 10
+  m_MaxDistance: 15
+  m_ReverbPreset: 8
+  m_Room: -1000
+  m_RoomHF: -500
+  m_DecayTime: 3.92
+  m_DecayHFRatio: 0.7
+  m_Reflections: -1230
+  m_ReflectionsDelay: 0.02
+  m_Reverb: -2
+  m_ReverbDelay: 0.029
+  m_HFReference: 5000
+  m_Diffusion: 100
+  m_Density: 100
+  m_LFReference: 250
+  m_RoomLF: 0
+--- !u!169 &1222499711
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1222499706}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0.22727273
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &1561633994
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,10 +918,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1561633996}
-  - component: {fileID: 1561633997}
   - component: {fileID: 1561633998}
   - component: {fileID: 1561633995}
   - component: {fileID: 1561633999}
+  - component: {fileID: 1561633997}
+  - component: {fileID: 1561634000}
   m_Layer: 0
   m_Name: Person 1 Right Arm
   m_TagString: Untagged
@@ -863,7 +936,7 @@ AudioEchoFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1561633994}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Delay: 457
   m_DecayRatio: 0.5
   m_WetMix: 1
@@ -889,15 +962,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1561633994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c6349785d55e524fb0801cdec66ff81, type: 3}
+  m_Script: {fileID: 11500000, guid: cc9fc51df54df724089e8c5a2c88d091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   angleTolerance: 10
   src: {fileID: 0}
   drum1: {fileID: 8300000, guid: 4055c3ffafa91c24d9c978ca4eb699ee, type: 3}
   drum2: {fileID: 8300000, guid: ddc3c3f3ea69fef42bafbc72ba298457, type: 3}
+  targetBodyID: 0
   targetBodyIndex: 0
   audioReverb: {fileID: 0}
+  lowPass: {fileID: 0}
 --- !u!82 &1561633998
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1001,6 +1076,27 @@ AudioReverbZone:
   m_Density: 100
   m_LFReference: 250
   m_RoomLF: 0
+--- !u!169 &1561634000
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1561633994}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0.22727273
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!4 &1608503459 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4247588475720420, guid: 985993e51d9fd9341a7df14419877129,
@@ -1046,6 +1142,8 @@ GameObject:
   - component: {fileID: 1692736390}
   - component: {fileID: 1692736389}
   - component: {fileID: 1692736388}
+  - component: {fileID: 1692736391}
+  - component: {fileID: 1692736392}
   m_Layer: 0
   m_Name: Person 2 Left Arm
   m_TagString: Untagged
@@ -1147,8 +1245,10 @@ MonoBehaviour:
   angleTolerance: 10
   src: {fileID: 0}
   drum2: {fileID: 8300000, guid: ddc3c3f3ea69fef42bafbc72ba298457, type: 3}
+  targetBodyID: 0
   targetBodyIndex: 1
   audioReverb: {fileID: 0}
+  lowPass: {fileID: 0}
 --- !u!4 &1692736390
 Transform:
   m_ObjectHideFlags: 0
@@ -1162,6 +1262,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!167 &1692736391
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1692736387}
+  m_Enabled: 1
+  m_MinDistance: 10
+  m_MaxDistance: 15
+  m_ReverbPreset: 8
+  m_Room: -1000
+  m_RoomHF: -500
+  m_DecayTime: 3.92
+  m_DecayHFRatio: 0.7
+  m_Reflections: -1230
+  m_ReflectionsDelay: 0.02
+  m_Reverb: -2
+  m_ReverbDelay: 0.029
+  m_HFReference: 5000
+  m_Diffusion: 100
+  m_Density: 100
+  m_LFReference: 250
+  m_RoomLF: 0
+--- !u!169 &1692736392
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1692736387}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0.22727273
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &1747301860
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,7 +1404,7 @@ Prefab:
     - target: {fileID: 114967751337479558, guid: 59b000a80e6d5e2499f2880299f6ad4f,
         type: 2}
       propertyPath: bodyEventListeners.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4618990424034976, guid: 59b000a80e6d5e2499f2880299f6ad4f, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1528,7 +1672,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1881757229}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!4 &1988608401 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4868922289527378, guid: 91e70e235efbda446bedb57073e6fba9,

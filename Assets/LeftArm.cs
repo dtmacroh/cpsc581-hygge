@@ -14,15 +14,18 @@ public class LeftArm : MonoBehaviour
    // public UnityEngine.AudioClip drum1;
     public UnityEngine.AudioClip drum2;
     private List<BodyGameObject> bodies = new List<BodyGameObject>();
-    public BodyGameObject targetBody;
+    //public BodyGameObject targetBody;
+    public ulong targetBodyID;
     public int targetBodyIndex;
     public AudioReverbZone audioReverb;
+    public AudioLowPassFilter lowPass;
 
     void Start()
     {
         src = this.GetComponent<UnityEngine.AudioSource>();
         audioReverb = this.GetComponent<UnityEngine.AudioReverbZone>();
-        //src2 = this.GetComponent<UnityEngine.AudioSource>();
+        lowPass = this.GetComponent<UnityEngine.AudioLowPassFilter>();
+        lowPass.cutoffFrequency = 5000;
     }
 
     //remember to use late update for after the KinectManager has updated all sensor information
@@ -47,27 +50,28 @@ public class LeftArm : MonoBehaviour
             distance_overall = Math.Abs((head1.x - head2.x) + (head1.z - head2.z));
             //both people have to be near
             Debug.Log(distance_overall);
+            lowPass.cutoffFrequency = 1500 + (distance_overall *200);
 
         }
         if (distance_overall < 10)
         {
-            Debug.Log("two people close together");
+            Debug.Log("left -two people close together");
 
         }
 
     }
     private void checkLeftArm()
     {
-        if (bodies.Count == targetBodyIndex + 1)
+        if (bodies.Count == targetBodyIndex + 1 )
         {
             //some bodies, send orientation update
 
-            Vector3 shoulderLeft = targetBody.GetJoint(Windows.Kinect.JointType.ShoulderLeft).transform.localPosition;
-            Vector3 elbowLeft = targetBody.GetJoint(Windows.Kinect.JointType.ElbowLeft).transform.localPosition;
-            Vector3 wristLeft = targetBody.GetJoint(Windows.Kinect.JointType.WristLeft).transform.localPosition;
+            Vector3 shoulderLeft = bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.ShoulderLeft).transform.localPosition;
+            Vector3 elbowLeft = bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.ElbowLeft).transform.localPosition;
+            Vector3 wristLeft = bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.WristLeft).transform.localPosition;
 
-            Vector3 wristRight = targetBody.GetJoint(Windows.Kinect.JointType.WristRight).transform.localPosition;
-            Vector3 spine = targetBody.GetJoint(Windows.Kinect.JointType.SpineMid).transform.localPosition;
+            Vector3 wristRight = bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.WristRight).transform.localPosition;
+            Vector3 spine = bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.SpineMid).transform.localPosition;
 
 
 
@@ -81,12 +85,12 @@ public class LeftArm : MonoBehaviour
 
 
 
-            if (wristLeft.y < spine.y)
+            if (wristLeft.y < spine.y && wristLeft.y < elbowLeft.y)
             {
                 Debug.Log("Left Drumming");
                 Debug.Log("wrist" + targetBodyIndex + " " + wristLeft.y + "spine" + targetBodyIndex + " " + spine.y);
                 src.clip = drum2;
-                audioReverb.maxDistance = (spine.z / 5) * (spine.z / 5) * 3;
+                audioReverb.maxDistance = spine.z * 2;
 
                 src.Play();
 
@@ -99,13 +103,7 @@ public class LeftArm : MonoBehaviour
     {
         BodyGameObject bodyFound = (BodyGameObject)args;
         bodies.Add(bodyFound);
-        for(int i=0; i<bodies.Count;i++)
-        {
-            if (i==targetBodyIndex)
-            {
-                targetBody = bodyFound;
-            }
-        }
+       
     }
 
     void Kinect_BodyLost(object args)
@@ -119,7 +117,7 @@ public class LeftArm : MonoBehaviour
                 if (bg.ID == bodyDeletedId)
                 {
                     bodies.Remove(bg);
-                    targetBody = null;
+                    
                     return;
                 }
             }

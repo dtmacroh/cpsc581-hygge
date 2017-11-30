@@ -14,16 +14,19 @@ public class RightArm : MonoBehaviour
     public UnityEngine.AudioClip drum1;
     public UnityEngine.AudioClip drum2;
     private List<BodyGameObject> bodies = new List<BodyGameObject>();
-    public BodyGameObject targetBody;
+    //public BodyGameObject targetBody;
+    public ulong targetBodyID;
     public int targetBodyIndex;
     public AudioReverbZone audioReverb;
+    public AudioLowPassFilter lowPass;
 
 
     void Start()
     {
         src = this.GetComponent<UnityEngine.AudioSource>();
         audioReverb = this.GetComponent<UnityEngine.AudioReverbZone>();
-        //src2 = this.GetComponent<UnityEngine.AudioSource>();
+        lowPass = this.GetComponent<UnityEngine.AudioLowPassFilter>();
+        lowPass.cutoffFrequency = 5000;
 
     }
 
@@ -42,33 +45,26 @@ public class RightArm : MonoBehaviour
 
     private void checkRightArm()
     {
-        if (bodies.Count == targetBodyIndex + 1)
+        if(bodies.Count == targetBodyIndex + 1 )
         {
 
-            Vector3 wristLeft = targetBody.GetJoint(Windows.Kinect.JointType.WristLeft).transform.localPosition;
+            Vector3 wristLeft = bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.WristLeft).transform.localPosition;
 
-            Vector3 wristRight = targetBody.GetJoint(Windows.Kinect.JointType.WristRight).transform.localPosition;
-            Vector3 spine = targetBody.GetJoint(Windows.Kinect.JointType.SpineMid).transform.localPosition;
+            Vector3 wristRight = bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.WristRight).transform.localPosition;
+            Vector3 spine = bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.SpineMid).transform.localPosition;
 
-            //Vector3 wristLeft = bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.WristLeft).transform.localPosition;
+            Vector3 elbowRight = bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.ElbowRight).transform.localPosition;
 
-            //Vector3 wristRight = bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.WristRight).transform.localPosition;
-            //Vector3 spine =  bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.SpineMid).transform.localPosition;
-
-            //Vector3 spineGlobal = bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.SpineMid).transform.position;
-            //Debug.Log(spineGlobal);
-
-
-            if (wristRight.y < spine.y)
+            if (wristRight.y < spine.y && wristRight.y < elbowRight.y)
             {
                 Debug.Log("Right Drumming");
                 Debug.Log("Right wrist" + targetBodyIndex + " " + wristLeft.y + "spine" + targetBodyIndex + " " + spine.y);
-                audioReverb.maxDistance = (spine.z / 5) * (spine.z / 5) * 3; //magic formula for reverb to work
+                audioReverb.maxDistance = spine.z  * 2; //magic formula for reverb to work
 
                 src.clip = drum1;
 
                 src.Play();
-
+                //lowPass.cutoffFrequency = 1839;
             }
 
             //elbowShoulder.Normalize();
@@ -105,11 +101,14 @@ public class RightArm : MonoBehaviour
             distance_overall = Math.Abs((head1.x - head2.x) + (head1.z - head2.z));
             //both people have to be near
             Debug.Log("distance overall " + distance_overall);
+            lowPass.cutoffFrequency = 1500 +(distance_overall * 200);
+            //lowPass.cutoffFrequency = 1839;
 
         }
         if (distance_overall < 10)
         {
             Debug.Log("right - two people close together");
+           
 
         }
     }
@@ -117,13 +116,7 @@ public class RightArm : MonoBehaviour
     {
         BodyGameObject bodyFound = (BodyGameObject)args;
         bodies.Add(bodyFound);
-        for (int i = 0; i < bodies.Count; i++)
-        {
-            if (i == targetBodyIndex)
-            {
-                targetBody = bodies[targetBodyIndex];
-            }
-        }
+       
     }
 
     void Kinect_BodyLost(object args)
@@ -134,10 +127,10 @@ public class RightArm : MonoBehaviour
         {
             foreach (BodyGameObject bg in bodies)
             {
-                if (bg.ID == bodyDeletedId)
+                if (bg.ID == bodyDeletedId )
                 {
                     bodies.Remove(bg);
-                    targetBody = null;
+                   
                     return;
                 }
             }
