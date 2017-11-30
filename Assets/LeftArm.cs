@@ -119,7 +119,7 @@ public class LeftArm : MonoBehaviour
                 if (bg.ID == bodyDeletedId)
                 {
                     bodies.Remove(bg);
-
+                    targetBody = null;
                     return;
                 }
             }

@@ -55,8 +55,8 @@ public class RightArm : MonoBehaviour
             //Vector3 wristRight = bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.WristRight).transform.localPosition;
             //Vector3 spine =  bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.SpineMid).transform.localPosition;
 
-            Vector3 spineGlobal = bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.SpineMid).transform.position;
-            Debug.Log(spineGlobal);
+            //Vector3 spineGlobal = bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.SpineMid).transform.position;
+            //Debug.Log(spineGlobal);
 
 
             if (wristRight.y < spine.y)
@@ -137,6 +137,7 @@ public class RightArm : MonoBehaviour
                 if (bg.ID == bodyDeletedId)
                 {
                     bodies.Remove(bg);
+                    targetBody = null;
                     return;
                 }
             }
