@@ -9,6 +9,8 @@ public class Recorder : MonoBehaviour {
     void Start () {
         aud = this.GetComponent<AudioSource>();
         aud.clip = Microphone.Start("Built-in Microphone", true, 10, 44100);
+        aud.loop = true;
+        while (!(Microphone.GetPosition(null) > 0)) { }
         aud.Play();
     }
 	

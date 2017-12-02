@@ -472,10 +472,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1117421006}
-  - component: {fileID: 1117421005}
   - component: {fileID: 1117421007}
   - component: {fileID: 1117421008}
   - component: {fileID: 1117421009}
+  - component: {fileID: 1117421005}
   m_Layer: 0
   m_Name: Person 1 Left Arm
   m_TagString: Untagged
@@ -491,16 +491,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1117421004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b79b24546d2b21942a227126a0ab3e03, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f07c738cdb860645b294bf074c65f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   angleTolerance: 10
   src: {fileID: 0}
-  drum2: {fileID: 8300000, guid: ddc3c3f3ea69fef42bafbc72ba298457, type: 3}
+  sound1: {fileID: 8300000, guid: b52a4ff4af982504fb59769b32c4a95e, type: 3}
+  sound2: {fileID: 8300000, guid: 69a97ec130dc4da48914fab5c6f55f07, type: 3}
+  level2_sound1: {fileID: 8300000, guid: 188dfa2d22fea9046a9fe2d2bd031e25, type: 3}
+  level2_sound2: {fileID: 8300000, guid: c481d56270f6e414489aa073796e4e1d, type: 3}
+  level3_sound1: {fileID: 0}
+  level3_sound2: {fileID: 0}
+  ping: {fileID: 0}
   targetBodyID: 0
   targetBodyIndex: 0
   audioReverb: {fileID: 0}
   lowPass: {fileID: 0}
+  rightOrLeft: 
+  notAnArm: 0
+  levelCounter: 0
 --- !u!4 &1117421006
 Transform:
   m_ObjectHideFlags: 0
@@ -744,9 +753,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1222499709}
   - component: {fileID: 1222499707}
-  - component: {fileID: 1222499708}
   - component: {fileID: 1222499710}
   - component: {fileID: 1222499711}
+  - component: {fileID: 1222499708}
   m_Layer: 0
   m_Name: Person 2 Right Arm
   m_TagString: Untagged
@@ -842,17 +851,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1222499706}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc9fc51df54df724089e8c5a2c88d091, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f07c738cdb860645b294bf074c65f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   angleTolerance: 10
   src: {fileID: 0}
-  drum1: {fileID: 8300000, guid: 4055c3ffafa91c24d9c978ca4eb699ee, type: 3}
-  drum2: {fileID: 8300000, guid: ddc3c3f3ea69fef42bafbc72ba298457, type: 3}
+  sound1: {fileID: 8300000, guid: b52a4ff4af982504fb59769b32c4a95e, type: 3}
+  sound2: {fileID: 8300000, guid: 69a97ec130dc4da48914fab5c6f55f07, type: 3}
+  level2_sound1: {fileID: 8300000, guid: 188dfa2d22fea9046a9fe2d2bd031e25, type: 3}
+  level2_sound2: {fileID: 8300000, guid: c481d56270f6e414489aa073796e4e1d, type: 3}
+  level3_sound1: {fileID: 0}
+  level3_sound2: {fileID: 0}
+  ping: {fileID: 0}
   targetBodyID: 0
-  targetBodyIndex: 1
+  targetBodyIndex: 0
   audioReverb: {fileID: 0}
   lowPass: {fileID: 0}
+  rightOrLeft: 
+  notAnArm: 0
+  levelCounter: 0
 --- !u!4 &1222499709
 Transform:
   m_ObjectHideFlags: 0
@@ -921,8 +938,8 @@ GameObject:
   - component: {fileID: 1561633998}
   - component: {fileID: 1561633995}
   - component: {fileID: 1561633999}
-  - component: {fileID: 1561633997}
   - component: {fileID: 1561634000}
+  - component: {fileID: 1561633997}
   m_Layer: 0
   m_Name: Person 1 Right Arm
   m_TagString: Untagged
@@ -962,17 +979,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1561633994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc9fc51df54df724089e8c5a2c88d091, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f07c738cdb860645b294bf074c65f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   angleTolerance: 10
   src: {fileID: 0}
-  drum1: {fileID: 8300000, guid: 4055c3ffafa91c24d9c978ca4eb699ee, type: 3}
-  drum2: {fileID: 8300000, guid: ddc3c3f3ea69fef42bafbc72ba298457, type: 3}
+  sound1: {fileID: 8300000, guid: f1f4d68a030501f499e79824bceccc08, type: 3}
+  sound2: {fileID: 8300000, guid: 69290795a8a40724ba30e273d0fd1191, type: 3}
+  level2_sound1: {fileID: 8300000, guid: 53e572656645a944bad85493334121f7, type: 3}
+  level2_sound2: {fileID: 8300000, guid: a8b4c362b724107499d363b893190629, type: 3}
+  level3_sound1: {fileID: 0}
+  level3_sound2: {fileID: 0}
+  ping: {fileID: 0}
   targetBodyID: 0
   targetBodyIndex: 0
   audioReverb: {fileID: 0}
   lowPass: {fileID: 0}
+  rightOrLeft: 
+  notAnArm: 0
+  levelCounter: 0
 --- !u!82 &1561633998
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1140,10 +1165,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1692736390}
-  - component: {fileID: 1692736389}
   - component: {fileID: 1692736388}
   - component: {fileID: 1692736391}
   - component: {fileID: 1692736392}
+  - component: {fileID: 1692736389}
   m_Layer: 0
   m_Name: Person 2 Left Arm
   m_TagString: Untagged
@@ -1239,16 +1264,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1692736387}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b79b24546d2b21942a227126a0ab3e03, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f07c738cdb860645b294bf074c65f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   angleTolerance: 10
   src: {fileID: 0}
-  drum2: {fileID: 8300000, guid: ddc3c3f3ea69fef42bafbc72ba298457, type: 3}
+  sound1: {fileID: 8300000, guid: f1f4d68a030501f499e79824bceccc08, type: 3}
+  sound2: {fileID: 8300000, guid: 69290795a8a40724ba30e273d0fd1191, type: 3}
+  level2_sound1: {fileID: 8300000, guid: 53e572656645a944bad85493334121f7, type: 3}
+  level2_sound2: {fileID: 8300000, guid: a8b4c362b724107499d363b893190629, type: 3}
+  level3_sound1: {fileID: 0}
+  level3_sound2: {fileID: 0}
+  ping: {fileID: 0}
   targetBodyID: 0
-  targetBodyIndex: 1
+  targetBodyIndex: 0
   audioReverb: {fileID: 0}
   lowPass: {fileID: 0}
+  rightOrLeft: 
+  notAnArm: 0
+  levelCounter: 0
 --- !u!4 &1692736390
 Transform:
   m_ObjectHideFlags: 0
@@ -1524,6 +1558,62 @@ Transform:
   - {fileID: 1608503459}
   m_Father: {fileID: 0}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1786898234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1786898236}
+  - component: {fileID: 1786898235}
+  m_Layer: 0
+  m_Name: distanceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1786898235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1786898234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f07c738cdb860645b294bf074c65f99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angleTolerance: 10
+  src: {fileID: 0}
+  sound1: {fileID: 0}
+  sound2: {fileID: 0}
+  level2_sound1: {fileID: 0}
+  level2_sound2: {fileID: 0}
+  level3_sound1: {fileID: 0}
+  level3_sound2: {fileID: 0}
+  ping: {fileID: 8300000, guid: 38069f0d5fc32b14a88db14a7aad6f6c, type: 3}
+  targetBodyID: 0
+  targetBodyIndex: 0
+  audioReverb: {fileID: 0}
+  lowPass: {fileID: 0}
+  rightOrLeft: 
+  notAnArm: 1
+  levelCounter: 0
+--- !u!4 &1786898236
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1786898234}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.37, y: -6.34, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1881757229
 GameObject:

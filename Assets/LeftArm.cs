@@ -11,8 +11,8 @@ public class LeftArm : MonoBehaviour
     public float angleTolerance = 10.0f;
     public UnityEngine.AudioSource src;
     //public UnityEngine.AudioSource src2;
-   // public UnityEngine.AudioClip drum1;
-    public UnityEngine.AudioClip drum2;
+    public UnityEngine.AudioClip sound1;
+    public UnityEngine.AudioClip sound2;
     private List<BodyGameObject> bodies = new List<BodyGameObject>();
     //public BodyGameObject targetBody;
     public ulong targetBodyID;
@@ -73,6 +73,7 @@ public class LeftArm : MonoBehaviour
             Vector3 wristRight = bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.WristRight).transform.localPosition;
             Vector3 spine = bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.SpineMid).transform.localPosition;
 
+            Vector3 head = bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.Head).transform.localPosition;
 
 
             //Vector3 shoulderLeft = bodies[targetBodyIndex].GetJoint(Windows.Kinect.JointType.ShoulderLeft).transform.localPosition;
@@ -84,14 +85,19 @@ public class LeftArm : MonoBehaviour
 
 
 
-
+            audioReverb.maxDistance = spine.z * 2;
             if (wristLeft.y < spine.y && wristLeft.y < elbowLeft.y)
             {
                 Debug.Log("Left Drumming");
                 Debug.Log("wrist" + targetBodyIndex + " " + wristLeft.y + "spine" + targetBodyIndex + " " + spine.y);
-                src.clip = drum2;
-                audioReverb.maxDistance = spine.z * 2;
+                src.clip = sound1;
+                
+                src.Play();
 
+            }
+            else if (wristLeft.y > spine.y && wristLeft.y > head.y)
+            {
+                src.clip = sound2;
                 src.Play();
 
             }
