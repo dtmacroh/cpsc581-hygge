@@ -7,13 +7,13 @@ public class StandUp : MonoBehaviour {
 
     //use this variable in the inspector to finetune your gesture detection.
     public float sittingThreshold = -5.0f;
-
+    public UnityEngine.AudioSource src;
     private List<BodyGameObject> bodies = new List<BodyGameObject>();
 
 
     void Start () {
-		
-	}
+        src = this.GetComponent<UnityEngine.AudioSource>();
+    }
 	
     //remember to use late update for after the KinectManager has updated all sensor information
 	void LateUpdate () {
@@ -27,9 +27,11 @@ public class StandUp : MonoBehaviour {
             if (spineBasePos.y <= sittingThreshold)
             {
                 Debug.Log("Sitting");
+               
             }
             else
             {
+                src.Play();
                 //Debug.Log("Standing");
             }
         }
